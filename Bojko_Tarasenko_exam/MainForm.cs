@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Bojko_Tarasenko_exam.Classes;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Bojko_Tarasenko_exam
 {
@@ -24,14 +25,25 @@ namespace Bojko_Tarasenko_exam
         private int _indent=0;
         WMPLib.WindowsMediaPlayer wplayer;
 
-        public MainForm()
+        public MainForm(bool loadGame=false)
         {
             InitializeComponent();
             player = new Player("Vasya", 50, 60, 70, 80, 50,100, 500);
             gameTime = new DateTime(2019, 11, 15, 8, 0, 0);
+
+            if(loadGame)
+            if (File.Exists(@"..\..\Save\saved.bin"))
+            {
+                Stream openFileStream = File.OpenRead(@"..\..\Save\saved.bin");
+                BinaryFormatter deserializer = new BinaryFormatter();
+                player = (Player)deserializer.Deserialize(openFileStream);
+                openFileStream.Close();
+                gameTime = player.gameTime;
+            }
+
             prevGameTime = gameTime;
             gameLocations = GenerateLocations();
-            currentGameLocation = gameLocations[0];
+            currentGameLocation = gameLocations[(int)GLocations.bedroom];
             wplayer = new WMPLib.WindowsMediaPlayer();
             
             wplayer.URL = Path.GetFullPath(@"..\..\Music\Chillhop.mp3");
@@ -54,11 +66,14 @@ namespace Bojko_Tarasenko_exam
         private void ShowPlayerCharacteristics()
         {
             lblName.Text = player.Name;
-            lblSatiety.Text = Convert.ToInt32(player.Satiety).ToString();
-            lblCheer.Text = Convert.ToInt32(player.Cheerfulness).ToString();
-            lblHygiene.Text = Convert.ToInt32(player.Hygiene).ToString();
-            lblIntellect.Text = Convert.ToInt32(player.Intelligence).ToString();
-            lblMood.Text = Convert.ToInt32(player.Mood).ToString();
+            lblSatiety.Text = Convert.ToInt32(player.Satiety).ToString() + "     (-3,6/ч)";
+            lblCheer.Text = Convert.ToInt32(player.Cheerfulness).ToString() + "     (-3,6/ч)";
+            lblHygiene.Text = Convert.ToInt32(player.Hygiene).ToString() + "     (-1,2/ч)";
+            lblIntellect.Text = Convert.ToInt32(player.Intelligence).ToString() + "     (-0,36/ч)";
+            lblMood.Text = Convert.ToInt32(player.Mood).ToString() + "     (-3,6/ч)";
+            lblHealth.Text= Convert.ToInt32(player.Health).ToString();
+            //lblWork.Text=
+            lblStudy.Text = player.study.GetAverageMark().ToString();
             lblMoney.Text = player.Money.ToString();
         }
 
@@ -66,7 +81,7 @@ namespace Bojko_Tarasenko_exam
         {
             List<string> dayOfWeek = new List<string> { " (Вс)", " (Пн)", " (Вт)", " (Ср)", " (Чт)", " (Пт)", " (Сб)"};
 
-            lblDate.Text = gameTime.ToString("MM/dd/yyyy") + dayOfWeek[(int)gameTime.DayOfWeek];
+            lblDate.Text = gameTime.ToString("dd/MM/yyyy") + dayOfWeek[(int)gameTime.DayOfWeek];
             lblTime.Text= gameTime.ToString("HH:mm:ss");
         }
 
@@ -188,31 +203,36 @@ namespace Bojko_Tarasenko_exam
                         break;
 
                     case Characteristic.location:
-                        currentGameLocation = gameLocations[imp.value];
-                        currentInteractionItem = null;
-                        FillInteractionLabels();
-                        ShowLocation();
+                        if (imp.value == (int)GLocations.academy)
+                        {
+                            if (Study.IsStudyTime(gameTime) == false || Study.IsStudyDay(gameTime.DayOfWeek) == false)
+                                MessageBox.Show("Сейчас не учебное время. Приходите во вт, ср, чт с 17:00 до 19:00");
+                        }
+                        else
+                        {
+                            currentGameLocation = gameLocations[imp.value];
+                            currentInteractionItem = null;
+                            FillInteractionLabels();
+                            ShowLocation();
+                        }
                         break;
 
                     case Characteristic.mark:
-                        if (Study.IsStudyDay(gameTime.DayOfWeek))
-                        {
                             player.GetMark();
                             MessageBox.Show($"Вы получили оценку: {player.study.GetLastMark()}");
-                        }
-                        else
-                            MessageBox.Show("Сегодня не учебный день");
                         break;
                 }
             }
             ShowPlayerCharacteristics();
         }
-        private void checkNullCharacteristics()
+        private float calcHpDecrease()
         {
-            if (player.Cheerfulness.Equals(0)) MessageBox.Show("Вы слишком устали, поспите");
-            if (player.Hygiene.Equals(0)) MessageBox.Show("От вас идет неприятный запах, помойтесь");
-            if (player.Mood.Equals(0)) MessageBox.Show("У вас плохое настроение, развлекитесь");
-            if (player.Satiety.Equals(0)) MessageBox.Show("Вы слишком голодны, поешьте");
+            float hpDecrease = 0;
+            if (player.Cheerfulness.Equals(0)) hpDecrease+=0.03f;
+            if (player.Hygiene.Equals(0)) hpDecrease += 0.03f;
+            if (player.Mood.Equals(0)) hpDecrease += 0.03f;
+            if (player.Satiety.Equals(0)) hpDecrease += 0.15f;
+            return hpDecrease;
         }
         private void timeSecTimer_Tick(object sender, EventArgs e)
         {
@@ -229,10 +249,35 @@ namespace Bojko_Tarasenko_exam
                 player.Hygiene -= n * 0.1f;
                 player.Intelligence -= n * 0.03f;
                 player.Mood -= n * 0.3f;
+
+                float hpDecrease = calcHpDecrease();
+                if (hpDecrease.Equals(0)) player.Health += n * 0.2f;
+                else player.Health -= n * hpDecrease;
+
                 ShowPlayerCharacteristics();
-                checkNullCharacteristics();
+
+                if (player.Health.Equals(0))
+                {
+                    MessageBox.Show("Вы мертвы");
+                    EndGame();
+                }
             }
         }
+        private void EndGame()
+        {
+            this.Close();
+        }
 
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            wplayer.controls.stop();
+
+            player.gameTime = gameTime;
+
+            Stream SaveFileStream = File.Create(@"..\..\Save\saved.bin");
+            BinaryFormatter serializer = new BinaryFormatter();
+            serializer.Serialize(SaveFileStream, player);
+            SaveFileStream.Close();
+        }
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bojko_Tarasenko_exam.Classes
 {
+    [Serializable()]
     public class Study
     {
         private List<int> _marks;
@@ -36,13 +37,23 @@ namespace Bojko_Tarasenko_exam.Classes
                 return true;
             return false;
         }
+        static public bool IsStudyTime(DateTime time)
+        {
+            if (time.Hour >= 17 && time.Hour <= 19)
+                return true;
+            else return false;
+        }
         public double GetAverageMark()
         {
-            return _marks.Average();
+            if (_marks.Count > 0)
+                return _marks.Average();
+            else return 0;
         }
         public int GetLastMark()
         {
-            return _marks[_marks.Count - 1];
+            if (_marks.Count > 0)
+                return _marks[_marks.Count - 1];
+            else return 0;
         }
     }
 }

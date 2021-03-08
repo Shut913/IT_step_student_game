@@ -47,6 +47,8 @@ namespace Bojko_Tarasenko_exam
             this.lblTime = new System.Windows.Forms.Label();
             this.lblDate = new System.Windows.Forms.Label();
             this.pnlCharacteristics = new System.Windows.Forms.Panel();
+            this.lblHealth = new System.Windows.Forms.Label();
+            this.lbl12 = new System.Windows.Forms.Label();
             this.lblMood = new System.Windows.Forms.Label();
             this.lbl7 = new System.Windows.Forms.Label();
             this.lblMoney = new System.Windows.Forms.Label();
@@ -63,6 +65,10 @@ namespace Bojko_Tarasenko_exam
             this.lbl2 = new System.Windows.Forms.Label();
             this.lbl1 = new System.Windows.Forms.Label();
             this.timeSecTimer = new System.Windows.Forms.Timer(this.components);
+            this.lblStudy = new System.Windows.Forms.Label();
+            this.lbl14 = new System.Windows.Forms.Label();
+            this.lblWork = new System.Windows.Forms.Label();
+            this.lbl13 = new System.Windows.Forms.Label();
             this.pnlSelect.SuspendLayout();
             this.pnlTime.SuspendLayout();
             this.pnlCharacteristics.SuspendLayout();
@@ -81,7 +87,7 @@ namespace Bojko_Tarasenko_exam
             this.pnlSelect.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlSelect.Location = new System.Drawing.Point(0, 461);
             this.pnlSelect.Name = "pnlSelect";
-            this.pnlSelect.Size = new System.Drawing.Size(1004, 147);
+            this.pnlSelect.Size = new System.Drawing.Size(1071, 147);
             this.pnlSelect.TabIndex = 0;
             // 
             // lblItemName
@@ -202,7 +208,7 @@ namespace Bojko_Tarasenko_exam
             this.pnlTime.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlTime.Location = new System.Drawing.Point(815, 0);
             this.pnlTime.Name = "pnlTime";
-            this.pnlTime.Size = new System.Drawing.Size(189, 461);
+            this.pnlTime.Size = new System.Drawing.Size(256, 461);
             this.pnlTime.TabIndex = 2;
             // 
             // lbl11
@@ -268,6 +274,12 @@ namespace Bojko_Tarasenko_exam
             // pnlCharacteristics
             // 
             this.pnlCharacteristics.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlCharacteristics.Controls.Add(this.lblStudy);
+            this.pnlCharacteristics.Controls.Add(this.lbl14);
+            this.pnlCharacteristics.Controls.Add(this.lblWork);
+            this.pnlCharacteristics.Controls.Add(this.lbl13);
+            this.pnlCharacteristics.Controls.Add(this.lblHealth);
+            this.pnlCharacteristics.Controls.Add(this.lbl12);
             this.pnlCharacteristics.Controls.Add(this.lblMood);
             this.pnlCharacteristics.Controls.Add(this.lbl7);
             this.pnlCharacteristics.Controls.Add(this.lblMoney);
@@ -286,8 +298,28 @@ namespace Bojko_Tarasenko_exam
             this.pnlCharacteristics.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlCharacteristics.Location = new System.Drawing.Point(815, 124);
             this.pnlCharacteristics.Name = "pnlCharacteristics";
-            this.pnlCharacteristics.Size = new System.Drawing.Size(189, 337);
+            this.pnlCharacteristics.Size = new System.Drawing.Size(256, 337);
             this.pnlCharacteristics.TabIndex = 3;
+            // 
+            // lblHealth
+            // 
+            this.lblHealth.AutoSize = true;
+            this.lblHealth.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblHealth.Location = new System.Drawing.Point(122, 222);
+            this.lblHealth.Name = "lblHealth";
+            this.lblHealth.Size = new System.Drawing.Size(33, 20);
+            this.lblHealth.TabIndex = 16;
+            this.lblHealth.Text = "null";
+            // 
+            // lbl12
+            // 
+            this.lbl12.AutoSize = true;
+            this.lbl12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lbl12.Location = new System.Drawing.Point(11, 222);
+            this.lbl12.Name = "lbl12";
+            this.lbl12.Size = new System.Drawing.Size(89, 20);
+            this.lbl12.TabIndex = 15;
+            this.lbl12.Text = "Здоровье:";
             // 
             // lblMood
             // 
@@ -313,7 +345,7 @@ namespace Bojko_Tarasenko_exam
             // 
             this.lblMoney.AutoSize = true;
             this.lblMoney.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblMoney.Location = new System.Drawing.Point(85, 261);
+            this.lblMoney.Location = new System.Drawing.Point(85, 310);
             this.lblMoney.Name = "lblMoney";
             this.lblMoney.Size = new System.Drawing.Size(33, 20);
             this.lblMoney.TabIndex = 12;
@@ -323,7 +355,7 @@ namespace Bojko_Tarasenko_exam
             // 
             this.lbl8.AutoSize = true;
             this.lbl8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lbl8.Location = new System.Drawing.Point(11, 261);
+            this.lbl8.Location = new System.Drawing.Point(11, 310);
             this.lbl8.Name = "lbl8";
             this.lbl8.Size = new System.Drawing.Size(68, 20);
             this.lbl8.TabIndex = 11;
@@ -445,17 +477,58 @@ namespace Bojko_Tarasenko_exam
             this.timeSecTimer.Interval = 1000;
             this.timeSecTimer.Tick += new System.EventHandler(this.timeSecTimer_Tick);
             // 
+            // lblStudy
+            // 
+            this.lblStudy.AutoSize = true;
+            this.lblStudy.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblStudy.Location = new System.Drawing.Point(122, 282);
+            this.lblStudy.Name = "lblStudy";
+            this.lblStudy.Size = new System.Drawing.Size(33, 20);
+            this.lblStudy.TabIndex = 20;
+            this.lblStudy.Text = "null";
+            // 
+            // lbl14
+            // 
+            this.lbl14.AutoSize = true;
+            this.lbl14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lbl14.Location = new System.Drawing.Point(11, 282);
+            this.lbl14.Name = "lbl14";
+            this.lbl14.Size = new System.Drawing.Size(59, 20);
+            this.lbl14.TabIndex = 19;
+            this.lbl14.Text = "Учеба:";
+            // 
+            // lblWork
+            // 
+            this.lblWork.AutoSize = true;
+            this.lblWork.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblWork.Location = new System.Drawing.Point(122, 252);
+            this.lblWork.Name = "lblWork";
+            this.lblWork.Size = new System.Drawing.Size(33, 20);
+            this.lblWork.TabIndex = 18;
+            this.lblWork.Text = "null";
+            // 
+            // lbl13
+            // 
+            this.lbl13.AutoSize = true;
+            this.lbl13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lbl13.Location = new System.Drawing.Point(11, 252);
+            this.lbl13.Name = "lbl13";
+            this.lbl13.Size = new System.Drawing.Size(68, 20);
+            this.lbl13.TabIndex = 17;
+            this.lbl13.Text = "Работа:";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1004, 608);
+            this.ClientSize = new System.Drawing.Size(1071, 608);
             this.Controls.Add(this.pnlCharacteristics);
             this.Controls.Add(this.pnlTime);
             this.Controls.Add(this.pnlLocation);
             this.Controls.Add(this.pnlSelect);
             this.Name = "MainForm";
             this.Text = "IT-Step Student Life ( ISL )";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.pnlSelect.ResumeLayout(false);
             this.pnlSelect.PerformLayout();
@@ -502,6 +575,12 @@ namespace Bojko_Tarasenko_exam
         private System.Windows.Forms.Label lbl9;
         private System.Windows.Forms.Label lblItemName;
         private System.Windows.Forms.Timer timeSecTimer;
+        private System.Windows.Forms.Label lblHealth;
+        private System.Windows.Forms.Label lbl12;
+        private System.Windows.Forms.Label lblStudy;
+        private System.Windows.Forms.Label lbl14;
+        private System.Windows.Forms.Label lblWork;
+        private System.Windows.Forms.Label lbl13;
     }
 }
 

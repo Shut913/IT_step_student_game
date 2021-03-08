@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bojko_Tarasenko_exam.Classes
 {
+    [Serializable()]
     public class Player
     {
         private bool[] _freezeParam;
@@ -26,6 +27,7 @@ namespace Bojko_Tarasenko_exam.Classes
         public float Mood { get { return _mood; } set { _mood = CheckVal(_mood, value, 4); } }
         public float Health { get { return _health; } set { _health = CheckValHealth(value); } }
         public int Money { get { return _money; } set { if (value < 0) _money = 0; else _money = value; } }
+        public DateTime gameTime;
 
         public Player(string name="Noname", 
                         float satiety=100,
@@ -43,6 +45,7 @@ namespace Bojko_Tarasenko_exam.Classes
             Hygiene = hygiene;
             Intelligence = intelligence;
             Mood = mood;
+            Health = health;
             Money = money;
             study = new Study();
 
@@ -78,18 +81,21 @@ namespace Bojko_Tarasenko_exam.Classes
             }
         }
         public void ChangeParams(
-                        int satietyDelta,
-                        int cheerfulnessDelta,
-                        int hygieneDelta,
-                        int intelligenceDelta,
-                        int moodDelta,
-                        int moneyDelta)
+                        float satietyDelta,
+                        float cheerfulnessDelta,
+                        float hygieneDelta,
+                        float intelligenceDelta,
+                        float moodDelta,
+                        float healthDelta,
+                        int moneyDelta
+                        )
         {
             Satiety += satietyDelta;
             Cheerfulness += cheerfulnessDelta;
             Hygiene += hygieneDelta;
             Intelligence += intelligenceDelta;
             Mood += moodDelta;
+            Health += healthDelta;
             Money += moneyDelta;
         }
         public void GetMark()
