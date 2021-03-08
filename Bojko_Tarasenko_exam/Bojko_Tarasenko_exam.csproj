@@ -46,12 +46,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Enums_Structs.cs" />
+    <Compile Include="Classes\Interaction.cs" />
+    <Compile Include="Classes\InteractionItem.cs" />
+    <Compile Include="Classes\GameLocation.cs" />
     <Compile Include="Classes\Player.cs" />
+    <Compile Include="Classes\Study.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm_GenerateLocations.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -79,6 +87,28 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\academy.png" />
+    <Content Include="Images\bathroom.png" />
+    <Content Include="Images\bedroom.png" />
+    <Content Include="Images\kitchen.png" />
+    <Content Include="Images\map.png" />
+    <Content Include="Images\park.png" />
+    <Content Include="Images\shop.png" />
+    <Content Include="Images\work.png" />
+    <Content Include="Music\Chillhop.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="WMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
