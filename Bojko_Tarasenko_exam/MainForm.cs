@@ -139,7 +139,7 @@ namespace Bojko_Tarasenko_exam
         }
         private void pnlLocation_MouseMove(object sender, MouseEventArgs e)
         {
-            this.Text = e.X.ToString()+ "; " + e.Y.ToString();
+            //this.Text = e.X.ToString()+ "; " + e.Y.ToString();  // Для отслеживания координат мыши
             mousePos = e;
         }
 
@@ -202,10 +202,25 @@ namespace Bojko_Tarasenko_exam
                         ShowGameTime();
                         break;
 
+                    case Characteristic.getWork:
+                        if (player.work.HasJob())
+                            MessageBox.Show("У вас уже есть работа");
+                        else
+                        {
+                            MessageBox.Show("Поздравляем, теперь у вас есть работа! Рабочее время: пн-пт с 7:00 до 16:30");
+                            player.work.Promote();
+                        }
+
+                        break;
+
+                    case Characteristic.schedule:
+                        MessageBox.Show("Учебное время: пн, ср, пт с 17:00 до 19:00");
+                        break;
+
                     case Characteristic.location:
                         if (imp.value == (int)GLocations.academy && (Study.IsStudyTime(gameTime) == false || Study.IsStudyDay(gameTime.DayOfWeek) == false))
                         {
-                            MessageBox.Show("Сейчас не учебное время. Приходите во вт, ср, пт с 17:00 до 19:00");
+                            MessageBox.Show("Сейчас не учебное время. Приходите в пн, ср, пт с 17:00 до 19:00");
                         }
                         else if(imp.value == (int)GLocations.work && (Work.IsWorkTime(gameTime) == false || Work.IsWorkDay(gameTime.DayOfWeek) == false || !player.work.HasJob()) )
                         {

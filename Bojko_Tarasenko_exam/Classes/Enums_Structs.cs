@@ -19,7 +19,8 @@ namespace Bojko_Tarasenko_exam.Classes
         mark,               // Оценка
         buyFood,            // Покупка еды
         eatFood,            // Кушание еды
-        schedule            // Рассписание уроков
+        schedule,           // Рассписание уроков
+        getWork             // Устроиться на работу
     }
     public struct Impact
     {
@@ -51,5 +52,15 @@ namespace Bojko_Tarasenko_exam.Classes
         shop,
         map,
         academy
+    }
+    public enum Food
+    {
+        apple=0,
+        banana,
+        yogurt,
+        juice,
+        water,
+        cola,
+        orange
     }
 }
