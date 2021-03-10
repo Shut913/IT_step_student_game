@@ -52,6 +52,7 @@
     <Compile Include="Classes\GameLocation.cs" />
     <Compile Include="Classes\Player.cs" />
     <Compile Include="Classes\Study.cs" />
+    <Compile Include="Classes\Work.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

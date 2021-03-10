@@ -72,7 +72,7 @@ namespace Bojko_Tarasenko_exam
             lblIntellect.Text = Convert.ToInt32(player.Intelligence).ToString() + "     (-0,36/ч)";
             lblMood.Text = Convert.ToInt32(player.Mood).ToString() + "     (-3,6/ч)";
             lblHealth.Text= Convert.ToInt32(player.Health).ToString();
-            //lblWork.Text=
+            lblWork.Text = player.work.WorkPosition + "  (" + player.work.Salary + "/д)";
             lblStudy.Text = player.study.GetAverageMark().ToString();
             lblMoney.Text = player.Money.ToString();
         }
@@ -203,10 +203,16 @@ namespace Bojko_Tarasenko_exam
                         break;
 
                     case Characteristic.location:
-                        if (imp.value == (int)GLocations.academy)
+                        if (imp.value == (int)GLocations.academy && (Study.IsStudyTime(gameTime) == false || Study.IsStudyDay(gameTime.DayOfWeek) == false))
                         {
-                            if (Study.IsStudyTime(gameTime) == false || Study.IsStudyDay(gameTime.DayOfWeek) == false)
-                                MessageBox.Show("Сейчас не учебное время. Приходите во вт, ср, чт с 17:00 до 19:00");
+                            MessageBox.Show("Сейчас не учебное время. Приходите во вт, ср, пт с 17:00 до 19:00");
+                        }
+                        else if(imp.value == (int)GLocations.work && (Work.IsWorkTime(gameTime) == false || Work.IsWorkDay(gameTime.DayOfWeek) == false || !player.work.HasJob()) )
+                        {
+                            if (player.work.HasJob())
+                                MessageBox.Show("Сейчас не рабочее время. Приходите в пн-пт с 6:00 до 8:00");
+                            else
+                                MessageBox.Show("У вас нет работы");
                         }
                         else
                         {
@@ -239,6 +245,8 @@ namespace Bojko_Tarasenko_exam
             gameTime = gameTime.AddSeconds(1);
             ShowGameTime();
 
+
+
             if ((gameTime - prevGameTime).TotalMinutes >= 5)
             {
                 int n = (int)((gameTime-prevGameTime).TotalMinutes / 5);
@@ -254,6 +262,9 @@ namespace Bojko_Tarasenko_exam
                 if (hpDecrease.Equals(0)) player.Health += n * 0.2f;
                 else player.Health -= n * hpDecrease;
 
+                CheckWorkEnds();
+                CheckStudyEnds();
+
                 ShowPlayerCharacteristics();
 
                 if (player.Health.Equals(0))
@@ -263,6 +274,28 @@ namespace Bojko_Tarasenko_exam
                 }
             }
         }
+
+        private void CheckWorkEnds()
+        {
+            if (currentGameLocation == gameLocations[(int)GLocations.work] && gameTime.Hour>=16 && gameTime.Minute>=30)
+            {
+                currentGameLocation = gameLocations[(int)GLocations.map];
+                player.Money += player.work.Salary;
+                ShowLocation();
+                MessageBox.Show("Рабочее время окончено, вы заработали " + player.work.Salary + " грн");
+            }
+        }
+        private void CheckStudyEnds()
+        {
+            if (currentGameLocation == gameLocations[(int)GLocations.academy] && gameTime.Hour >= 21)
+            {
+                currentGameLocation = gameLocations[(int)GLocations.map];
+                player.GetMark();
+                ShowLocation();
+                MessageBox.Show("Учебное время окончено, вы получили оценку " + player.study.GetLastMark() );
+            }
+        }
+
         private void EndGame()
         {
             this.Close();

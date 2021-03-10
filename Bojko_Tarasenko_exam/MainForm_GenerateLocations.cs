@@ -22,36 +22,26 @@ namespace Bojko_Tarasenko_exam
                             new Impact(Characteristic.mood, 3),
                             new Impact(Characteristic.time, 5)
                         }),
-                        new Interaction("2. Распугать   (В: 10 мин, Г: -2)", new List<Impact> {
+                        new Interaction("2. Распугать   (В: 10 мин, Г: -2, И: -2, Н: +5)", new List<Impact> {
                             new Impact(Characteristic.hygiene, -2),
-                            new Impact(Characteristic.time, 10)
-                        }),
-                        new Interaction("3. Кинуть палку   (И: -7)", new List<Impact> {
-                            new Impact(Characteristic.intelligence, -7)
-                        }),
-                        new Interaction("4. Позвать   (И: -3)", new List<Impact> {
-                            new Impact(Characteristic.intelligence, -3)
-                        }),
-                        new Interaction("6. Поговорить по душам   (И: -5, Н: +5)", new List<Impact> {
+                            new Impact(Characteristic.time, 10),
                             new Impact(Characteristic.mood, 5),
-                            new Impact(Characteristic.intelligence, -5)
+                            new Impact(Characteristic.intelligence, -2)
                         })
                     }),
                     new InteractionItem("Фонтан", 615, 320, 810, 400, new List<Interaction> {       // 1.2 Фонтан
-                        new Interaction("1. Попить воды   (В: 10 мин, И: -7, Н: +5)", new List<Impact> {
-                            new Impact(Characteristic.intelligence, -7),
-                            new Impact(Characteristic.mood, 5),
-                            new Impact(Characteristic.time, 10)
+                        new Interaction("1. Попить воды   (В: 5 мин, С: +3, Г: -6, Н: -6)", new List<Impact> {
+                            new Impact(Characteristic.hygiene, -6),
+                            new Impact(Characteristic.mood, -6),
+                            new Impact(Characteristic.time, 5),
+                            new Impact(Characteristic.satiety, 3)
                         }),
-                        new Interaction("2. Искупаться   (В: 10 мин, Г: +5, И: -10, Н: +5)", new List<Impact> {
-                            new Impact(Characteristic.intelligence, -10),
-                            new Impact(Characteristic.hygiene, 5),
-                            new Impact(Characteristic.mood, 5),
-                            new Impact(Characteristic.time, 15)
+                        new Interaction("2. Искупаться   (В: 10 мин, Г: +10, И: -3, Н: -8)", new List<Impact> {
+                            new Impact(Characteristic.hygiene, 10),
+                            new Impact(Characteristic.mood, -8),
+                            new Impact(Characteristic.time, 10),
+                            new Impact(Characteristic.intelligence, -3)
                         }),
-                        new Interaction("3. Плюнуть   (И: -10)", new List<Impact> {
-                            new Impact(Characteristic.intelligence, -10)
-                        })
                     }),
                     new InteractionItem("",439,386,489,436, new List<Interaction> {     // 1.3 Тропинка
                         new Interaction("1. Уйти из парка", new List<Impact> {
@@ -76,59 +66,74 @@ namespace Bojko_Tarasenko_exam
                         })
                     }),
                     new InteractionItem("Компьютер", 170, 215, 250, 280, new List<Interaction> {        // 2.2 Компьютер
-                        new Interaction("1. Выполнить домашнее задание   ( В: 2 ч, И: +20, Н: -20)", new List<Impact> {
-                            new Impact(Characteristic.mark, 0),
+                        new Interaction("1. Почитать методичку   ( В: 2 ч, Б: -30, И: +8, Н: -20)", new List<Impact> {
+                            new Impact(Characteristic.time, 120),
+                            new Impact(Characteristic.intelligence, 8),
+                            new Impact(Characteristic.mood, -20),
+                            new Impact(Characteristic.cheerfulness, -30)
+                        }),
+                        new Interaction("2. Поиграть в танчики   ( В: 3 ч, Б: -10, И: -3, Н: +60)", new List<Impact> {
                             new Impact(Characteristic.time, 180),
-                            new Impact(Characteristic.intelligence, 10),
-                            new Impact(Characteristic.mood, -20)
+                            new Impact(Characteristic.intelligence, -3),
+                            new Impact(Characteristic.mood, 60),
+                            new Impact(Characteristic.cheerfulness, -10)
+                        }),
+                        new Interaction("3. Посмотреть YouTube   ( В: 30 мин, И: -1, Н: +20)", new List<Impact> {
+                            new Impact(Characteristic.time, 30),
+                            new Impact(Characteristic.intelligence, -1),
+                            new Impact(Characteristic.mood, 20)
+                        }),
+                        new Interaction("4. Грязно поругаться на форуме   ( В: 15 мин, И: -5, Н: +50)", new List<Impact> {
+                            new Impact(Characteristic.time, 15),
+                            new Impact(Characteristic.intelligence, -5),
+                            new Impact(Characteristic.mood, 50)
                         })
                     }),
                     new InteractionItem("Книжная полка", 170, 100, 385, 150, new List<Interaction> {        // 2.3 Полка 1
-                        new Interaction("1. Почитать художественную литературу   (В: 1 ч, Б: -15, И: +10, Н: +10)", new List<Impact> {
+                        new Interaction("1. Почитать художественную литературу   (В: 1 ч, Б: -15, И: +2, Н: +10)", new List<Impact> {
                             new Impact(Characteristic.time, 60),
                             new Impact(Characteristic.cheerfulness, -15),
-                            new Impact(Characteristic.intelligence, 10),
+                            new Impact(Characteristic.intelligence, 2),
                             new Impact(Characteristic.mood, 10)
                         }),
-                        new Interaction("2. Почитать учебную литературу   (В: 1 ч, Б: -15, И: +15, Н: -5)", new List<Impact> {
+                        new Interaction("2. Почитать учебную литературу   (В: 1 ч, Б: -15, И: +4, Н: -5)", new List<Impact> {
                             new Impact(Characteristic.time, 60),
                             new Impact(Characteristic.cheerfulness, -15),
-                            new Impact(Characteristic.intelligence, 15),
+                            new Impact(Characteristic.intelligence, 4),
                             new Impact(Characteristic.mood, -5)
                         })
                     }),
                     new InteractionItem("Книжная полка", 390, 185, 610, 240, new List<Interaction> {        // 2.4 Полка 2
-                         new Interaction("1. Почитать художественную литературу   (В: 1 ч, Б: -15, И: +10, Н: +10)", new List<Impact> {
+                         new Interaction("1. Почитать художественную литературу   (В: 1 ч, Б: -15, И: +2, Н: +10)", new List<Impact> {
                             new Impact(Characteristic.time, 60),
                             new Impact(Characteristic.cheerfulness, -15),
-                            new Impact(Characteristic.intelligence, 10),
+                            new Impact(Characteristic.intelligence, 2),
                             new Impact(Characteristic.mood, 10)
                         }),
-                         new Interaction("2. Почитать учебную литературу   (В: 1 ч, Б: -15, И: +15, Н: -5)", new List<Impact> {
+                         new Interaction("2. Почитать учебную литературу   (В: 1 ч, Б: -15, И: +4, Н: -5)", new List<Impact> {
                             new Impact(Characteristic.time, 60),
                             new Impact(Characteristic.cheerfulness, -15),
-                            new Impact(Characteristic.intelligence, 15),
+                            new Impact(Characteristic.intelligence, 4),
                             new Impact(Characteristic.mood, -5)
                         })
                     }),
                     new InteractionItem("Кровать", 370, 350, 620, 410, new List<Interaction> {        // 2.5 Кровать
                         new Interaction("1. Выспаться   (В: 8 ч, Б: +100)", new List<Impact> {
-                            new Impact(Characteristic.satiety, 100),
+                            new Impact(Characteristic.cheerfulness, 100),
                              new Impact(Characteristic.time, 480),
                         }),
                         new Interaction("2. Спать   (В: 6 ч, Б: +70)", new List<Impact> {
-                            new Impact(Characteristic.satiety, 70),
+                            new Impact(Characteristic.cheerfulness, 70),
                              new Impact(Characteristic.time, 360),
                         }),
-                        new Interaction("3. Вздремнуть   (В: 30 мин, Б: +25)", new List<Impact> {
-                            new Impact(Characteristic.satiety, 25),
+                        new Interaction("3. Вздремнуть   (В: 30 мин, Б: +5)", new List<Impact> {
+                            new Impact(Characteristic.cheerfulness, 5),
                              new Impact(Characteristic.time, 30),
                         })
                     }),
                     new InteractionItem("Записки", 260, 170, 355, 250, new List<Interaction> {        // 2.6 Записки
-                        new Interaction("1. Посмотреть рассписание учебы   (В: 5 мин, И: +3)", new List<Impact> {
-                            new Impact(Characteristic.time, 5),
-                            new Impact(Characteristic.intelligence, 3)                            
+                        new Interaction("1. Посмотреть рассписание учебы   ", new List<Impact> {
+                            new Impact(Characteristic.schedule, 0)
                         }),
                          new Interaction("2. Посмотреть фотографии   (В: 5 мин, Н: +10)", new List<Impact> {
                             new Impact(Characteristic.time, 5),
@@ -136,9 +141,8 @@ namespace Bojko_Tarasenko_exam
                         })
                     }),
                     new InteractionItem("Окно", 1, 100, 140, 260, new List<Interaction> {        // 2.7 Окно
-                        new Interaction("1. Посмотреть в окно (В: 10 мин, И: +5, Н: +10)", new List<Impact> {
+                        new Interaction("1. Посмотреть в окно (В: 10 мин, Н: +10)", new List<Impact> {
                             new Impact(Characteristic.time, 10),
-                            new Impact(Characteristic.intelligence, 5),
                             new Impact(Characteristic.mood, 10)
                         })
                     })
@@ -170,29 +174,19 @@ namespace Bojko_Tarasenko_exam
                         })
                     }),
                     new InteractionItem("Телевизор", 450, 85, 520, 140, new List<Interaction> {        // 3.4 Телевизор
-                        new Interaction("1. Посмотреть мелодраму", new List<Impact> {
-                            new Impact(Characteristic.time, 90),
-                            new Impact(Characteristic.satiety, -10),
-                            new Impact(Characteristic.cheerfulness, -15),
-                            new Impact(Characteristic.hygiene, -10),
-                            new Impact(Characteristic.intelligence, 7),
-                            new Impact(Characteristic.mood, -20)
+                        new Interaction("1. Посмотреть мелодраму   (В: 1 ч, И: -3, Н: +10)", new List<Impact> {
+                            new Impact(Characteristic.time, 60),
+                            new Impact(Characteristic.intelligence, -3),
+                            new Impact(Characteristic.mood, 10)
                         }),
-                        new Interaction("2. Посмотреть Discovery", new List<Impact> {
-                            new Impact(Characteristic.time, 90),
-                            new Impact(Characteristic.satiety, -10),
-                            new Impact(Characteristic.cheerfulness, -15),
-                            new Impact(Characteristic.hygiene, -10),
-                            new Impact(Characteristic.intelligence, 7),
-                            new Impact(Characteristic.mood, -20)
+                        new Interaction("2. Посмотреть Discovery   (В: 1 ч, И: +3, Н: +10)", new List<Impact> {
+                            new Impact(Characteristic.time, 60),
+                            new Impact(Characteristic.intelligence, 3),
+                            new Impact(Characteristic.mood, +10)
                         }),
-                        new Interaction("3. Посмотреть рекламу", new List<Impact> {
-                            new Impact(Characteristic.time, 90),
-                            new Impact(Characteristic.satiety, -10),
-                            new Impact(Characteristic.cheerfulness, -15),
-                            new Impact(Characteristic.hygiene, -10),
-                            new Impact(Characteristic.intelligence, 7),
-                            new Impact(Characteristic.mood, -20)
+                        new Interaction("3. Посмотреть рекламу   (В: 10 мин, Н: -5)", new List<Impact> {
+                            new Impact(Characteristic.time, 10),
+                            new Impact(Characteristic.mood, -5)
                         })
                     }),
                 }),
@@ -210,8 +204,55 @@ namespace Bojko_Tarasenko_exam
                             new Impact(Characteristic.location, Convert.ToInt32(GLocations.map)),
                             new Impact(Characteristic.time, 5)
                         })
-                    })
+                    }),
+                    new InteractionItem("Раковина",282,255,375,276,new List<Interaction> {                     // 4.2 Раковина 
+                        new Interaction("1.Умыться   (B: 10мин, Г: +25)",new List<Impact> {
+                            new Impact(Characteristic.time, 10),
+                            new Impact(Characteristic.hygiene, 25)
+                        }),
+                        new Interaction("2. Помыть руки   (В: 5 мин, Г: +10)",new List<Impact> {
+                            new Impact(Characteristic.time, 5),
+                            new Impact(Characteristic.hygiene, 10)
+                        }),
+                    new Interaction("3. Почистить зубы   (В: 5 мин, Г: +5)",new List<Impact> {
+                        new Impact(Characteristic.time, 5),
+                        new Impact(Characteristic.hygiene, 5)
+                        })
+
+                   }),
+                   new InteractionItem("Ванна",0,326,250,455,new List<Interaction> {                       //4.3 Ванна
+                        new Interaction("1. Принять ванну   (В: 1 час, Г: +100, Н: +20)",new List<Impact> {
+                            new Impact(Characteristic.time, 60),
+                            new Impact(Characteristic.hygiene, 100),
+                            new Impact(Characteristic.mood,20)
+                       }),
+                        new Interaction("2. Принять душ   (B: 30 мин, Г: +100)",new List<Impact> {
+                            new Impact(Characteristic.time, 30),
+                            new Impact(Characteristic.hygiene, 100),
+                       })
+
+                    }),
+                    new InteractionItem("Унитаз",471,387,592,460,new List<Interaction>{                     //4.4 Унитаз 
+                         new Interaction("1. Сходить по нужде   (B: 5 мин,Г: +5)",new List<Impact> {
+                              new Impact(Characteristic.time, 5),
+                             new Impact(Characteristic.hygiene, 5)
+                         })
+                     }),
+
+                     new InteractionItem("Зеркало",267,131,404,233,new List<Interaction> {                //4.5 Зеркало 
+                         new Interaction("1. Посмотреться   (B: 2мин, H: +5)", new List<Impact> {
+                             new Impact(Characteristic.time, 2),
+                             new Impact(Characteristic.mood,5)
+                         }),
+                         new Interaction("2. Упрожняться в риторики (В: 5 мин, И: +5)", new List<Impact> {
+                             new Impact(Characteristic.time,5),
+                             new Impact(Characteristic.intelligence,5)
+                         })
+                     })
+
+
                 }),
+              
                 new GameLocation("Работа", "..\\..\\Images\\work.png", new List<InteractionItem> {      // 5 Работа
                     new InteractionItem("Выход", 381,388,434,436, new List<Interaction> {            // 5.1 Выход
                         new Interaction("1. Пойти на улицу", new List<Impact> {

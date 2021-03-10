@@ -47,6 +47,10 @@ namespace Bojko_Tarasenko_exam
             this.lblTime = new System.Windows.Forms.Label();
             this.lblDate = new System.Windows.Forms.Label();
             this.pnlCharacteristics = new System.Windows.Forms.Panel();
+            this.lblStudy = new System.Windows.Forms.Label();
+            this.lbl14 = new System.Windows.Forms.Label();
+            this.lblWork = new System.Windows.Forms.Label();
+            this.lbl13 = new System.Windows.Forms.Label();
             this.lblHealth = new System.Windows.Forms.Label();
             this.lbl12 = new System.Windows.Forms.Label();
             this.lblMood = new System.Windows.Forms.Label();
@@ -65,10 +69,6 @@ namespace Bojko_Tarasenko_exam
             this.lbl2 = new System.Windows.Forms.Label();
             this.lbl1 = new System.Windows.Forms.Label();
             this.timeSecTimer = new System.Windows.Forms.Timer(this.components);
-            this.lblStudy = new System.Windows.Forms.Label();
-            this.lbl14 = new System.Windows.Forms.Label();
-            this.lblWork = new System.Windows.Forms.Label();
-            this.lbl13 = new System.Windows.Forms.Label();
             this.pnlSelect.SuspendLayout();
             this.pnlTime.SuspendLayout();
             this.pnlCharacteristics.SuspendLayout();
@@ -301,6 +301,46 @@ namespace Bojko_Tarasenko_exam
             this.pnlCharacteristics.Size = new System.Drawing.Size(256, 337);
             this.pnlCharacteristics.TabIndex = 3;
             // 
+            // lblStudy
+            // 
+            this.lblStudy.AutoSize = true;
+            this.lblStudy.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblStudy.Location = new System.Drawing.Point(122, 282);
+            this.lblStudy.Name = "lblStudy";
+            this.lblStudy.Size = new System.Drawing.Size(33, 20);
+            this.lblStudy.TabIndex = 20;
+            this.lblStudy.Text = "null";
+            // 
+            // lbl14
+            // 
+            this.lbl14.AutoSize = true;
+            this.lbl14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lbl14.Location = new System.Drawing.Point(11, 282);
+            this.lbl14.Name = "lbl14";
+            this.lbl14.Size = new System.Drawing.Size(59, 20);
+            this.lbl14.TabIndex = 19;
+            this.lbl14.Text = "Учеба:";
+            // 
+            // lblWork
+            // 
+            this.lblWork.AutoSize = true;
+            this.lblWork.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblWork.Location = new System.Drawing.Point(76, 252);
+            this.lblWork.Name = "lblWork";
+            this.lblWork.Size = new System.Drawing.Size(33, 20);
+            this.lblWork.TabIndex = 18;
+            this.lblWork.Text = "null";
+            // 
+            // lbl13
+            // 
+            this.lbl13.AutoSize = true;
+            this.lbl13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lbl13.Location = new System.Drawing.Point(11, 252);
+            this.lbl13.Name = "lbl13";
+            this.lbl13.Size = new System.Drawing.Size(68, 20);
+            this.lbl13.TabIndex = 17;
+            this.lbl13.Text = "Работа:";
+            // 
             // lblHealth
             // 
             this.lblHealth.AutoSize = true;
@@ -476,46 +516,6 @@ namespace Bojko_Tarasenko_exam
             this.timeSecTimer.Enabled = true;
             this.timeSecTimer.Interval = 1000;
             this.timeSecTimer.Tick += new System.EventHandler(this.timeSecTimer_Tick);
-            // 
-            // lblStudy
-            // 
-            this.lblStudy.AutoSize = true;
-            this.lblStudy.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblStudy.Location = new System.Drawing.Point(122, 282);
-            this.lblStudy.Name = "lblStudy";
-            this.lblStudy.Size = new System.Drawing.Size(33, 20);
-            this.lblStudy.TabIndex = 20;
-            this.lblStudy.Text = "null";
-            // 
-            // lbl14
-            // 
-            this.lbl14.AutoSize = true;
-            this.lbl14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lbl14.Location = new System.Drawing.Point(11, 282);
-            this.lbl14.Name = "lbl14";
-            this.lbl14.Size = new System.Drawing.Size(59, 20);
-            this.lbl14.TabIndex = 19;
-            this.lbl14.Text = "Учеба:";
-            // 
-            // lblWork
-            // 
-            this.lblWork.AutoSize = true;
-            this.lblWork.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblWork.Location = new System.Drawing.Point(122, 252);
-            this.lblWork.Name = "lblWork";
-            this.lblWork.Size = new System.Drawing.Size(33, 20);
-            this.lblWork.TabIndex = 18;
-            this.lblWork.Text = "null";
-            // 
-            // lbl13
-            // 
-            this.lbl13.AutoSize = true;
-            this.lbl13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lbl13.Location = new System.Drawing.Point(11, 252);
-            this.lbl13.Name = "lbl13";
-            this.lbl13.Size = new System.Drawing.Size(68, 20);
-            this.lbl13.TabIndex = 17;
-            this.lbl13.Text = "Работа:";
             // 
             // MainForm
             // 

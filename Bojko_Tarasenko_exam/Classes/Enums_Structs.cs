@@ -18,7 +18,8 @@ namespace Bojko_Tarasenko_exam.Classes
         location,           // Локация
         mark,               // Оценка
         buyFood,            // Покупка еды
-        eatFood             // Кушание еды
+        eatFood,            // Кушание еды
+        schedule            // Рассписание уроков
     }
     public struct Impact
     {

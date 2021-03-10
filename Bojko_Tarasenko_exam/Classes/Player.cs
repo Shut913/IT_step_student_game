@@ -17,8 +17,9 @@ namespace Bojko_Tarasenko_exam.Classes
         private float _intelligence;  // Интеллект
         private float _mood;          // Настроение
         private float _health;        // Здоровье
-        private int _money;         // Деньги
-        public Study study;
+        private int _money;           // Деньги
+        public Study study;           // Учеба
+        public Work work;             // Работа
         public string Name { get { return _name; } set { _name = value; } }
         public float Satiety { get { return _satiety; } set { _satiety = CheckVal(_satiety, value, 0); } }
         public float Cheerfulness { get { return _cheerfulness; } set { _cheerfulness = CheckVal(_cheerfulness, value, 1); } }
@@ -48,7 +49,7 @@ namespace Bojko_Tarasenko_exam.Classes
             Health = health;
             Money = money;
             study = new Study();
-
+            work = new Work();
         }
         private float CheckValHealth(float val)
         {
