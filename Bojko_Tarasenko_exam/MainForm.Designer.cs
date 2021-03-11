@@ -47,6 +47,8 @@ namespace Bojko_Tarasenko_exam
             this.lblTime = new System.Windows.Forms.Label();
             this.lblDate = new System.Windows.Forms.Label();
             this.pnlCharacteristics = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.tbName = new System.Windows.Forms.TextBox();
             this.lblStudy = new System.Windows.Forms.Label();
             this.lbl14 = new System.Windows.Forms.Label();
             this.lblWork = new System.Windows.Forms.Label();
@@ -61,7 +63,6 @@ namespace Bojko_Tarasenko_exam
             this.lblHygiene = new System.Windows.Forms.Label();
             this.lblCheer = new System.Windows.Forms.Label();
             this.lblSatiety = new System.Windows.Forms.Label();
-            this.lblName = new System.Windows.Forms.Label();
             this.lbl6 = new System.Windows.Forms.Label();
             this.lbl5 = new System.Windows.Forms.Label();
             this.lbl4 = new System.Windows.Forms.Label();
@@ -274,6 +275,8 @@ namespace Bojko_Tarasenko_exam
             // pnlCharacteristics
             // 
             this.pnlCharacteristics.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlCharacteristics.Controls.Add(this.button1);
+            this.pnlCharacteristics.Controls.Add(this.tbName);
             this.pnlCharacteristics.Controls.Add(this.lblStudy);
             this.pnlCharacteristics.Controls.Add(this.lbl14);
             this.pnlCharacteristics.Controls.Add(this.lblWork);
@@ -288,7 +291,6 @@ namespace Bojko_Tarasenko_exam
             this.pnlCharacteristics.Controls.Add(this.lblHygiene);
             this.pnlCharacteristics.Controls.Add(this.lblCheer);
             this.pnlCharacteristics.Controls.Add(this.lblSatiety);
-            this.pnlCharacteristics.Controls.Add(this.lblName);
             this.pnlCharacteristics.Controls.Add(this.lbl6);
             this.pnlCharacteristics.Controls.Add(this.lbl5);
             this.pnlCharacteristics.Controls.Add(this.lbl4);
@@ -300,6 +302,25 @@ namespace Bojko_Tarasenko_exam
             this.pnlCharacteristics.Name = "pnlCharacteristics";
             this.pnlCharacteristics.Size = new System.Drawing.Size(256, 337);
             this.pnlCharacteristics.TabIndex = 3;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(217, 39);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(28, 26);
+            this.button1.TabIndex = 0;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // tbName
+            // 
+            this.tbName.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.tbName.Enabled = false;
+            this.tbName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbName.Location = new System.Drawing.Point(76, 39);
+            this.tbName.Name = "tbName";
+            this.tbName.Size = new System.Drawing.Size(135, 26);
+            this.tbName.TabIndex = 21;
             // 
             // lblStudy
             // 
@@ -441,16 +462,6 @@ namespace Bojko_Tarasenko_exam
             this.lblSatiety.TabIndex = 7;
             this.lblSatiety.Text = "null";
             // 
-            // lblName
-            // 
-            this.lblName.AutoSize = true;
-            this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblName.Location = new System.Drawing.Point(83, 42);
-            this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(33, 20);
-            this.lblName.TabIndex = 6;
-            this.lblName.Text = "null";
-            // 
             // lbl6
             // 
             this.lbl6.AutoSize = true;
@@ -546,7 +557,6 @@ namespace Bojko_Tarasenko_exam
         private System.Windows.Forms.Panel pnlLocation;
         private System.Windows.Forms.Panel pnlTime;
         private System.Windows.Forms.Panel pnlCharacteristics;
-        private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label lbl6;
         private System.Windows.Forms.Label lbl5;
         private System.Windows.Forms.Label lbl4;
@@ -581,6 +591,8 @@ namespace Bojko_Tarasenko_exam
         private System.Windows.Forms.Label lbl14;
         private System.Windows.Forms.Label lblWork;
         private System.Windows.Forms.Label lbl13;
+        private System.Windows.Forms.TextBox tbName;
+        private System.Windows.Forms.Button button1;
     }
 }
 

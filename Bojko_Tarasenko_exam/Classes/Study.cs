@@ -55,5 +55,9 @@ namespace Bojko_Tarasenko_exam.Classes
                 return _marks[_marks.Count - 1];
             else return 0;
         }
+        public int GetLearnedDays()
+        {
+            return _marks.Count;
+        }
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bojko_Tarasenko_exam.Classes
 {
+    [Serializable()]
     public class Interaction
     {
         public string _text;

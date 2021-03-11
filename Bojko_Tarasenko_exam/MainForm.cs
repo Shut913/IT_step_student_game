@@ -28,8 +28,9 @@ namespace Bojko_Tarasenko_exam
         public MainForm(bool loadGame=false)
         {
             InitializeComponent();
-            player = new Player("Vasya", 50, 60, 70, 80, 50,100, 500);
-            gameTime = new DateTime(2019, 11, 15, 8, 0, 0);
+            player = new Player("Player", 50, 60, 70, 80, 50,100, 500);
+            gameTime = new DateTime(2019, 11, 11, 6, 0, 0);
+            gameLocations = GenerateLocations();
 
             if(loadGame)
             if (File.Exists(@"..\..\Save\saved.bin"))
@@ -39,10 +40,11 @@ namespace Bojko_Tarasenko_exam
                 player = (Player)deserializer.Deserialize(openFileStream);
                 openFileStream.Close();
                 gameTime = player.gameTime;
+                gameLocations[(int)GLocations.kitchen]._interactionItems[1] = player.fridge;
             }
 
             prevGameTime = gameTime;
-            gameLocations = GenerateLocations();
+
             currentGameLocation = gameLocations[(int)GLocations.bedroom];
             wplayer = new WMPLib.WindowsMediaPlayer();
             
@@ -65,7 +67,7 @@ namespace Bojko_Tarasenko_exam
 
         private void ShowPlayerCharacteristics()
         {
-            lblName.Text = player.Name;
+            tbName.Text = player.Name;
             lblSatiety.Text = Convert.ToInt32(player.Satiety).ToString() + "     (-3,6/ч)";
             lblCheer.Text = Convert.ToInt32(player.Cheerfulness).ToString() + "     (-3,6/ч)";
             lblHygiene.Text = Convert.ToInt32(player.Hygiene).ToString() + "     (-1,2/ч)";
@@ -127,7 +129,7 @@ namespace Bojko_Tarasenko_exam
                             }
                     ++i;
                 }
-                if (i - _indent > 4)
+                if (i - _indent > 5)
                     lblForward.Enabled = true;
                 else
                     lblForward.Enabled = false;
@@ -213,14 +215,38 @@ namespace Bojko_Tarasenko_exam
 
                         break;
 
+                    case Characteristic.buyFood:
+                        if (player.Money >= Products.price[imp.value])
+                        {
+                            gameLocations[(int)GLocations.kitchen]._interactionItems[1]._interactions.Add
+                                (new Interaction("- Употребить " + Products.name[imp.value], new List<Impact> {
+                                    new Impact(Characteristic.time, 5),
+                                    new Impact(Characteristic.satiety, Products.satiety[imp.value]),
+                                    new Impact(Characteristic.eatFood, gameLocations[(int)GLocations.kitchen]._interactionItems[1]._interactions.Count)
+                            }));
+                            player.Money -= Products.price[imp.value];
+                        }
+                        else MessageBox.Show("Недостаточно средств!");
+                        break;
+
+                    case Characteristic.eatFood:
+                        gameLocations[(int)GLocations.kitchen]._interactionItems[1]._interactions.RemoveAt(imp.value);
+                        for (int i = imp.value; i < gameLocations[(int)GLocations.kitchen]._interactionItems[1]._interactions.Count; i++)
+                            gameLocations[(int)GLocations.kitchen]._interactionItems[1]._interactions[i]._impact[2].value-=1;
+
+                        currentGameLocation = gameLocations[(int)GLocations.kitchen];
+                        FillInteractionLabels();
+                        break;
+
                     case Characteristic.schedule:
                         MessageBox.Show("Учебное время: пн, ср, пт с 17:00 до 19:00");
                         break;
 
                     case Characteristic.location:
-                        if (imp.value == (int)GLocations.academy && (Study.IsStudyTime(gameTime) == false || Study.IsStudyDay(gameTime.DayOfWeek) == false))
+                        if (imp.value == (int)GLocations.academy && (Study.IsStudyTime(gameTime) == false || Study.IsStudyDay(gameTime.DayOfWeek) == false || player.Money<250))
                         {
-                            MessageBox.Show("Сейчас не учебное время. Приходите в пн, ср, пт с 17:00 до 19:00");
+                            if (player.Money < 250) MessageBox.Show("У вас недостаточно средств для оплаты учебного дня (250 грн)");
+                            else MessageBox.Show("Сейчас не учебное время. Приходите в пн, ср, пт с 17:00 до 19:00");
                         }
                         else if(imp.value == (int)GLocations.work && (Work.IsWorkTime(gameTime) == false || Work.IsWorkDay(gameTime.DayOfWeek) == false || !player.work.HasJob()) )
                         {
@@ -296,7 +322,19 @@ namespace Bojko_Tarasenko_exam
             {
                 currentGameLocation = gameLocations[(int)GLocations.map];
                 player.Money += player.work.Salary;
+
+                if ((player.study.GetAverageMark() >= 8d && player.study.GetLearnedDays() > 10 && player.work.positionId == 1) ||
+                    (player.study.GetAverageMark() >= 9d && player.study.GetLearnedDays() > 20 && player.work.positionId == 2) ||
+                    (player.study.GetAverageMark() >= 10d && player.study.GetLearnedDays() > 30 && player.work.positionId == 3) ||
+                    (player.study.GetAverageMark() >= 11d && player.study.GetLearnedDays() > 40 && player.work.positionId == 4))
+                {
+                    player.work.Promote();
+                    MessageBox.Show("Вы повышены до " + player.work.WorkPosition + ". Теперь ваша зарплата составляет " + player.work.Salary + "грн");
+                }
+
                 ShowLocation();
+                currentInteractionItem = null;
+                FillInteractionLabels();
                 MessageBox.Show("Рабочее время окончено, вы заработали " + player.work.Salary + " грн");
             }
         }
@@ -306,9 +344,21 @@ namespace Bojko_Tarasenko_exam
             {
                 currentGameLocation = gameLocations[(int)GLocations.map];
                 player.GetMark();
+                player.Money -= 250;
                 ShowLocation();
-                MessageBox.Show("Учебное время окончено, вы получили оценку " + player.study.GetLastMark() );
+                currentInteractionItem = null;
+                FillInteractionLabels();
+                MessageBox.Show("Учебное время окончено, вы получили оценку " + player.study.GetLastMark() + ". Оплата за учебу - 250 грн.");
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (tbName.Enabled == true) {
+                player.Name = tbName.Text;
+                tbName.Enabled = false;
+            } 
+            else tbName.Enabled = true;
         }
 
         private void EndGame()
@@ -321,11 +371,14 @@ namespace Bojko_Tarasenko_exam
             wplayer.controls.stop();
 
             player.gameTime = gameTime;
+            player.fridge = gameLocations[(int)GLocations.kitchen]._interactionItems[1];
+            
 
             Stream SaveFileStream = File.Create(@"..\..\Save\saved.bin");
             BinaryFormatter serializer = new BinaryFormatter();
             serializer.Serialize(SaveFileStream, player);
             SaveFileStream.Close();
         }
+
     }
 }

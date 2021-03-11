@@ -163,10 +163,6 @@ namespace Bojko_Tarasenko_exam
                         })
                     }),
                     new InteractionItem("Холодильник", 1, 50, 180, 450, new List<Interaction> {        // 3.2 Холодильник
-                        new Interaction("1. Посмотреть на пустые полки   (В: 5 мин, Н: -2)", new List<Impact> {
-                            new Impact(Characteristic.time, 5),
-                            new Impact(Characteristic.mood, -2)
-                        })
                     }),
                     new InteractionItem("Раковина", 340, 225, 400, 240, new List<Interaction> {        // 3.3 Раковина
                         new Interaction("1. Вымыть руки", new List<Impact> {
@@ -257,7 +253,7 @@ namespace Bojko_Tarasenko_exam
                     new InteractionItem("Компьютер", 155, 105, 265, 280, new List<Interaction> {        // 5.2 Компьютер
                         new Interaction("1. Поработать   (B: 2 ч, Б: -10, И: +3, H: -30)", new List<Impact> {
                             new Impact(Characteristic.cheerfulness, -10),
-                            new Impact(Characteristic.time, 5),
+                            new Impact(Characteristic.time, 120),
                             new Impact(Characteristic.intelligence, 3),
                             new Impact(Characteristic.mood, -30),
                         }),
@@ -296,38 +292,41 @@ namespace Bojko_Tarasenko_exam
                         })
                     }),
                     new InteractionItem("Полки", 255,5,735,165, new List<Interaction> {                 // 6.2 Полки
-                        new Interaction("1. Купить сок   (Д: -30 грн)", new List<Impact> {
-                            new Impact(Characteristic.money, -30),
+                        new Interaction("1. Купить сок   (Д: -"+ Products.price[(int)Food.juice] +" грн)", new List<Impact> {
                             new Impact(Characteristic.buyFood, (int)Food.juice)
                         }),
-                        new Interaction("2. Купить йогурт   (Д: -25 грн)", new List<Impact> {
-                            new Impact(Characteristic.money, -25),
+                        new Interaction("2. Купить йогурт   (Д: -"+Products.price[(int)Food.yogurt]+" грн)", new List<Impact> {
                             new Impact(Characteristic.buyFood, (int)Food.yogurt)
                         })
                     }),
                     new InteractionItem("Полки", 110,195,230,350, new List<Interaction> {                 // 6.3 Полки
-                        new Interaction("1. Купить бананы   (Д: -28 грн)", new List<Impact> {
-                            new Impact(Characteristic.money, -28),
+                        new Interaction("1. Купить бананы   (Д: -"+Products.price[(int)Food.banana]+" грн)", new List<Impact> {
                             new Impact(Characteristic.buyFood, (int)Food.banana)
                         }),
-                        new Interaction("2. Купить яблоки   (Д: -15 грн)", new List<Impact> {
-                            new Impact(Characteristic.money, -15),
+                        new Interaction("2. Купить яблоки   (Д: -"+Products.price[(int)Food.apple]+" грн)", new List<Impact> {
                             new Impact(Characteristic.buyFood, (int)Food.apple)
                         })
                     }),
                     new InteractionItem("Полки", 500,200,760,400, new List<Interaction> {                 // 6.4 Полки
-                        new Interaction("1. Купить апельсины   (Д: -35 грн)", new List<Impact> {
-                            new Impact(Characteristic.money, -35),
+                        new Interaction("1. Купить апельсины   (Д: -" + Products.price[(int)Food.orange] + " грн)", new List<Impact> {
                             new Impact(Characteristic.buyFood, (int)Food.orange)
+                        }),
+                        new Interaction("2. Купить огурцы   (Д: -" + Products.price[(int)Food.cucumber] + " грн)", new List<Impact> {
+                            new Impact(Characteristic.buyFood, (int)Food.cucumber)
+                        }),
+                        new Interaction("3. Купить помидоры   (Д: -" + Products.price[(int)Food.tomato] + " грн)", new List<Impact> {
+                            new Impact(Characteristic.buyFood, (int)Food.tomato)
+                        }),
+                        new Interaction("4. Купить хлеб   (Д: -" + Products.price[(int)Food.bread] + " грн)", new List<Impact> {
+                            new Impact(Characteristic.buyFood, (int)Food.bread)
                         })
+
                     }),
                     new InteractionItem("Холодильник", 1,30,100,425, new List<Interaction> {            // 6.5 Холодильник
-                        new Interaction("1. Купить колу   (Д: -15 грн)", new List<Impact> {
-                            new Impact(Characteristic.money, -15),
+                        new Interaction("1. Купить колу   (Д: -" + Products.price[(int)Food.cola] + " грн)", new List<Impact> {
                             new Impact(Characteristic.buyFood, (int)Food.cola)
                         }),
-                        new Interaction("2. Купить минералку   (Д: -10 грн)", new List<Impact> {
-                            new Impact(Characteristic.money, -10),
+                        new Interaction("2. Купить минералку   (Д: -" + Products.price[(int)Food.water]+" грн)", new List<Impact> {
                             new Impact(Characteristic.buyFood, (int)Food.water)
                         })
                     })

@@ -29,6 +29,7 @@ namespace Bojko_Tarasenko_exam.Classes
         public float Health { get { return _health; } set { _health = CheckValHealth(value); } }
         public int Money { get { return _money; } set { if (value < 0) _money = 0; else _money = value; } }
         public DateTime gameTime;
+        public InteractionItem fridge;
 
         public Player(string name="Noname", 
                         float satiety=100,

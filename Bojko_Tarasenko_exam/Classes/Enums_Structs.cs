@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bojko_Tarasenko_exam.Classes
 {
+    [Serializable()]
     public enum Characteristic
     {
         satiety,            // Сытость
@@ -22,7 +23,8 @@ namespace Bojko_Tarasenko_exam.Classes
         schedule,           // Рассписание уроков
         getWork             // Устроиться на работу
     }
-    public struct Impact
+    [Serializable()]
+    public class Impact
     {
         public Characteristic characteristic;
         public int value;
@@ -31,7 +33,9 @@ namespace Bojko_Tarasenko_exam.Classes
             characteristic = _characteristic;
             value = _value;
         }
+        public void decreseValue(){ value--; }
     }
+    [Serializable()]
     public struct Position
     {
         public int X;
@@ -61,6 +65,9 @@ namespace Bojko_Tarasenko_exam.Classes
         juice,
         water,
         cola,
-        orange
+        orange,
+        cucumber,
+        tomato,
+        bread
     }
 }

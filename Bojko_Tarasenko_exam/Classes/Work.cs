@@ -10,10 +10,10 @@ namespace Bojko_Tarasenko_exam.Classes
     public class Work
     {
         static private List<DayOfWeek> _workDays = new List<DayOfWeek> { DayOfWeek.Monday, DayOfWeek.Tuesday, DayOfWeek.Wednesday, DayOfWeek.Thursday, DayOfWeek.Friday };
-        static private List<string> WorkPositions = new List<string> { "Нет", "Уборщик", "Трейни", "Джун", "Мидл", "Сеньор" };
+        static private List<string> WorkPositions = new List<string> { "Нет", "Стажер", "Трейни", "Джун", "Мидл", "Сеньор" };
         static private List<int> salaries = new List<int> { 0, 250, 300, 350, 700, 1500 };
 
-        private int positionId;                             // Id должности
+        public int positionId;                             // Id должности
         public string WorkPosition { get; private set; }    // Должность
         public int Salary { get; private set; }             // Зарплата
         public Work()

@@ -51,7 +51,7 @@
     <Compile Include="Classes\InteractionItem.cs" />
     <Compile Include="Classes\GameLocation.cs" />
     <Compile Include="Classes\Player.cs" />
-    <Compile Include="Classes\Product.cs" />
+    <Compile Include="Classes\Products.cs" />
     <Compile Include="Classes\Study.cs" />
     <Compile Include="Classes\Work.cs" />
     <Compile Include="MainForm.cs">
